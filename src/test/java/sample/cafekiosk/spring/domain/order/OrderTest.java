@@ -7,7 +7,6 @@ import sample.cafekiosk.spring.domain.product.Product;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static sample.cafekiosk.spring.domain.product.ProductSellingStatus.SELLING;
 import static sample.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 
@@ -27,6 +26,22 @@ class OrderTest {
 
         // then
         assertThat(order.getTotalPrice()).isEqualTo(3000);
+    }
+
+    @DisplayName("주문 생성 시 주문 상태는 INIT이다.")
+    @Test
+    void init() {
+        // given
+        List<Product> products = List.of(
+                createProduct("001", 1000),
+                createProduct("002", 2000)
+        );
+
+        // when
+        Order order = Order.create(products);
+
+        // then
+        assertThat(order.getOrderStatus()).isEqualByComparingTo(OrderStatus.INIT);
     }
 
     private Product createProduct(String productNumber, int price) {
