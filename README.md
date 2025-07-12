@@ -16,3 +16,4 @@
 ## @DataJpaTest
 - `@SpringBootTest` 보다 가벼움
 - JPA 관련된 빈들만 주입하기 때문에 속도가 빠름
+- `@Transactional` 을 포함하기 때문에 각 테스트마다 롤백 됨
