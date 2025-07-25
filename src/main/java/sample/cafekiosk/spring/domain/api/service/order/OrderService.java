@@ -25,9 +25,9 @@ public class OrderService {
     @Transactional
     public OrderResponse createOrder(OrderCreateRequest request, LocalDateTime registeredDateTime) {
         List<String> productNumbers = request.getProductNumbers();
-        List<Product> duplicateProducts = findProductsBy(productNumbers);
+        List<Product> products = findProductsBy(productNumbers);
 
-        Order order = Order.create(duplicateProducts, registeredDateTime);
+        Order order = Order.create(products, registeredDateTime);
         Order savedOrder = orderRepository.save(order);
 
         return OrderResponse.of(savedOrder);
